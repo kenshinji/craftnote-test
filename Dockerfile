@@ -7,6 +7,7 @@ WORKDIR /usr/app
 COPY ./package.json ./
 RUN npm install
 COPY ./ ./
+ENV PORT=8080
 
 # Default command
 CMD ["npm", "start"]

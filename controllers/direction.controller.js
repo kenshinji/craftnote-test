@@ -2,7 +2,10 @@ exports.getDirection = (req, res) => {
         // check req param
         const heading = req.query.heading
         const target = req.query.target
-    
+        
+        if(!heading || !target){
+            return res.status(400).json({ message: 'parameter heading or target missing.'})
+        }
         if(isNaN(heading)){
             return res.status(400).json({ message: 'heading is not a number.'})
         }

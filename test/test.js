@@ -7,6 +7,17 @@ chai.should();
 
 describe('Direction API tests', () => {
     describe('GET /direction', () => {
+        it('should return 400 bad request error when heading or target is missing', (done) => {
+            const heading = 100
+            chai.request(server)
+                .get(`/direction?heading=${heading}`)
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.message.should.equal('parameter heading or target missing.')
+                    done(err);
+                });
+        })
+
         it('should return 400 bad request error when heading is not a number', (done) => {
             const heading = 'a'
             chai.request(server)
